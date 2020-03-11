@@ -11,14 +11,16 @@ namespace FSISSystem.DAL
 {
     internal class FSISContext : DbContext
     {
-        public FSISContext() : base("FSIS db")
+        public FSISContext() : base("FSIS_db")
         {
 
         }
+
+ public DbSet<Team> Teams { get; set; }
         public DbSet<Guardian> Guardians { get; set; }
         public DbSet<Player> Players { get; set; }
 
-        public DbSet<Team> Teams { get; set; }
+       
 
 
 

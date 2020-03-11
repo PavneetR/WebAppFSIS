@@ -16,12 +16,12 @@ namespace FSISSystem.ENTITIES
 
         public string TeamName { get; set; }
 
-        public string CoachName { get; set; }
+        //public string CoachName { get; set; }
         
-        public string AssistantCoach { get; set; }
+        //public string AssistantCoach { get; set; }
 
-        public int Wins { get; set; }
-        public int Losses { get; set; }
+        //public int Wins { get; set; }
+        //public int Losses { get; set; }
 
     }
 }
