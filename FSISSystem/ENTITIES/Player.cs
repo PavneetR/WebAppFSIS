@@ -13,8 +13,8 @@ namespace FSISSystem.ENTITIES
     public class Player
     {
         public int PlayerID { get; set; }
-        public int GuardianID { get; set; }
-        public int TeamID { get; set; }
+        public int? GuardianID { get; set; }
+        public int? TeamID { get; set; }
 
 
         public string FirstName { get; set; }
