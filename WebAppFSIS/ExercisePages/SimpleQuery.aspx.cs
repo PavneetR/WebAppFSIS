@@ -32,7 +32,7 @@ namespace WebAppFSIS.ExercisePages
                     {
                         TeamController sysmgr = new TeamController();
                         Team info = null;
-                        info = sysmgr.List(); //BLL controller method
+                       // info = sysmgr.List(); //BLL controller method
                         if (info == null)
                         {
                             MessageLabel.Text = "Team ID not found.";

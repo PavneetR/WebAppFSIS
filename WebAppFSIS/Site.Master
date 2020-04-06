@@ -70,6 +70,17 @@
                                             style="color:black" runat="server">
                                             Simple PKey Query
                                     </a>
+                                     <a class="dropdown-item"
+                                            href="~/ExercisePages/exercise06.aspx"
+                                            style="color:black" runat="server">
+                                            Ex 6
+                                    </a>
+                                     <a class="dropdown-item"
+                                            href="~/ExercisePages/Exo9and10.aspx"
+                                            style="color:black" runat="server">
+                                            Ex 9/10
+                                    </a>
+
                                 </div>
                             </li>
                             <li class="nav-item">

@@ -19,14 +19,14 @@ namespace FSISSystem.ENTITIES
 
         public string FirstName { get; set; }
 
-        public string LastNameName { get; set; }
-        public int Age { get; set; }
+        public string LastName { get; set; }
+        public int? Age { get; set; }
         public string Gender{ get; set; }
 
-        public int AlbertaHealthCareNumber { get; set; }
+        public string AlbertaHealthCareNumber { get; set; }
 
         public string MedicalAlertDetails { get; set; }
 
-        public string EmailAddress { get; set; }
+        //public int? EmailAddress { get; set; }
     }
 }

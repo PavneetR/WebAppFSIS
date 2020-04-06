@@ -25,7 +25,7 @@ namespace WebAppFSIS.ExercisePages
                 {
                     TeamController sysmgr = new TeamController();
                     List<Team> info = null;
-                    info = sysmgr.Teams_FindByID(int.Parse(List01.SelectedValue));
+                info = sysmgr.List();/*Teams_FindByID(int.Parse(List01.SelectedValue));*/
                 info.Sort((x, y) => x.TeamName.CompareTo(y.TeamName));
                 List01.DataSource = info;
                 List01.DataTextField = nameof(Team.TeamName);
@@ -62,7 +62,12 @@ namespace WebAppFSIS.ExercisePages
                 }
             }
         }
+        protected void List02_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            List02.PageIndex = e.NewPageIndex;
+            Fetch_Click(sender, new EventArgs());
+        }
 
-        
+
     }
 }
