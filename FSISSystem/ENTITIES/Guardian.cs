@@ -16,9 +16,16 @@ namespace FSISSystem.ENTITIES
 
         public string FirstName { get; set; }
 
-        public string LastNameName { get; set; }
-        public int EmergencyPhoneNumber { get; set; }
+        public string LastName { get; set; }
+        public string EmergencyPhoneNumber { get; set; }
         public string EmailAddress { get; set; }
+        public string GFullName
+        {
+            get
+            {
+                return FirstName + "(" + LastName + ")";
+            }
+        }
     }
 
 }

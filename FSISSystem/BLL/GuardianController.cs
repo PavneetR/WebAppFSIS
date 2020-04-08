@@ -10,6 +10,13 @@ namespace FSISSystem.BLL
 {
     public class GuardianController
     {
+        public List<Guardian> List()
+        {
+            using (var context = new FSISContext())
+            {
+                return context.Guardians.ToList();
+            }
+        }
         public Guardian Guardians_FindByID(int GuardianID)
         {
             using (var  context = new FSISContext())

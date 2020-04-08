@@ -28,5 +28,12 @@ namespace FSISSystem.ENTITIES
         public string MedicalAlertDetails { get; set; }
 
         //public int? EmailAddress { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return FirstName + "(" + LastName + ")";
+            }
+        }
     }
 }
