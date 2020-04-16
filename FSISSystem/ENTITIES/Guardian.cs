@@ -19,7 +19,7 @@ namespace FSISSystem.ENTITIES
         public string LastName { get; set; }
         public string EmergencyPhoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        public string GFullName
+        public string FullName
         {
             get
             {

@@ -75,7 +75,10 @@
                      AssociatedControlID="Gender"></asp:Label>
         </div>
         <div class="col-md-4 text-left">
-                <asp:RadioButton ID="Gender" runat="server"></asp:RadioButton>
+                <asp:TextBox ID="Gender" runat="server">
+            <%--<asp:listItem>Male</asp:listItem>
+                    <asp:listItem>Female</asp:listItem>--%>
+</asp:TextBox>
         </div>
     </div>
 
@@ -113,7 +116,8 @@
             <asp:Button ID="ClearButton" runat="server" OnClick="Clear_Click" Text="Clear" CausesValidation="false"/>&nbsp;&nbsp;
             <asp:Button ID="AddButton" runat="server" OnClick="Add_Click" Text="Add"/>&nbsp;&nbsp;
             <asp:Button ID="UpdateButton" runat="server" OnClick="Update_Click" Text="Update"/>&nbsp;&nbsp;
-            <asp:Button ID="DeleteButton" runat="server" OnClick="Delete_Click" Text="Delete"/>
+            <asp:Button ID="DeleteButton" runat="server" OnClick="Delete_Click" Text="Delete"
+                OnClientClick="return CallFunction();"/>
         </div>
     </div>
     <script type="text/javascript">

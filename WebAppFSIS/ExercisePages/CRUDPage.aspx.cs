@@ -34,12 +34,16 @@ namespace WebAppFSIS.ExercisePages
                 {
                     Response.Redirect("~/Default.aspx");
                 }
-                
+                else if (add == "yes")
+                {
+                    //PlayerC.Enabled = false;
+                }
+
                 else
                 {
                     PlayerController sysmgr = new PlayerController();
                     Player info = null;
-                    info = sysmgr.FindByID(int.Parse(pid)); //problem
+                    info = sysmgr.FindByPKID(int.Parse(pid)); //problem
                     if (info == null)
                     {
                         errormsgs.Add("Player is no longer on file.");
@@ -49,8 +53,8 @@ namespace WebAppFSIS.ExercisePages
                     else
                     {
                         ID.Text = info.PlayerID.ToString();
-                        ID.Text = info.GuardianID.ToString();
-                        ID.Text = info.TeamID.ToString();
+                        //ID.Text = info.GuardianID.ToString();
+                        //ID.Text = info.TeamID.ToString();
 
                         FirstName.Text = info.FirstName;
                         LastName.Text = info.LastName;
@@ -108,10 +112,10 @@ namespace WebAppFSIS.ExercisePages
                 GuardianController sysmgr = new GuardianController();
                 List<Guardian> info = null;
                 info = sysmgr.List();
-                info.Sort((x, y) => x.GFullName.CompareTo(y.GFullName));
+                info.Sort((x, y) => x.GuardianID.CompareTo(y.GuardianID));
                 GuardianList.DataSource = info;
-                GuardianList.DataTextField = nameof(Guardian.GFullName);
-                GuardianList.DataValueField = nameof(Guardian.GFullName);
+                GuardianList.DataTextField = nameof(Guardian.FullName);
+                GuardianList.DataValueField = nameof(Guardian.GuardianID);
                 GuardianList.DataBind();
                 GuardianList.Items.Insert(0, "select...");
 
@@ -153,14 +157,14 @@ namespace WebAppFSIS.ExercisePages
             {
                 errormsgs.Add(" Last Name is required");
             }
-            if (GuardianList.SelectedIndex == 0)
-            {
-                errormsgs.Add("Guardian is required");
-            }
-            if (TeamList.SelectedIndex == 0)
-            {
-                errormsgs.Add("Team is required");
-            }
+            //if (GuardianList.SelectedIndex == 0)
+            //{
+            //    errormsgs.Add("Guardian is required");
+            //}
+            //if (TeamList.SelectedIndex == 0)
+            //{
+            //    errormsgs.Add("Team is required");
+            //}
             //if (QuantityPerUnit.Text.Length > 20)
             //{
             //    errormsgs.Add("Quantity per Unit is limited to 20 characters");
@@ -168,6 +172,7 @@ namespace WebAppFSIS.ExercisePages
             int age = 0;
             if (!string.IsNullOrEmpty(Age.Text))
             {
+                //errormsgs.Add(" Last Name is required");
                 if (int.TryParse(Age.Text, out age))
                 {
                     if (age < 6 || age > 14)
@@ -180,6 +185,43 @@ namespace WebAppFSIS.ExercisePages
                     errormsgs.Add("Age must be a real number");
                 }
             }
+            else
+            {
+                errormsgs.Add("age is required");
+            }
+            if (!string.IsNullOrEmpty(AlbertaHealthCareNumber.Text))
+            {
+                if (char.IsDigit(AlbertaHealthCareNumber.Text[0]))
+                {
+                    if (Convert.ToInt32(AlbertaHealthCareNumber.Text.First().ToString()) > 0)
+                    {
+                        if (!(AlbertaHealthCareNumber.Text.Length <=10))
+                        {
+                            errormsgs.Add("Health care number must have 10 characters max");
+                        }
+                    }
+                    else
+                    {
+                        errormsgs.Add("Health care number must start with 1 and be between 1 and 9 ");
+                    }
+                }
+                else
+                {
+                    errormsgs.Add("Health care number must be a number");
+                }
+            }
+            else
+            {
+                errormsgs.Add("Health care number is required");
+            }
+            //if(!string.IsNullOrEmpty(Gender.Text))
+            //{
+            //    errormsgs.Add("Gender is required");
+            //    if (bool.ParseGender.Text, out Gender)
+            //    {
+
+            //    }
+            //}
         }
         protected void Back_Click(object sender, EventArgs e)
         {
@@ -220,6 +262,14 @@ namespace WebAppFSIS.ExercisePages
                     Player item = new Player();
                     item.FirstName = FirstName.Text.Trim();
                     item.LastName = LastName.Text.Trim();
+                    if (GuardianList.SelectedIndex == 0)
+                    {
+                        item.GuardianID = null;
+                    }
+                    else
+                    {
+                        item.GuardianID = int.Parse(GuardianList.SelectedValue);
+                    }
                     if (TeamList.SelectedIndex == 0)
                     {
                         item.TeamID = null;
@@ -228,7 +278,16 @@ namespace WebAppFSIS.ExercisePages
                     {
                         item.TeamID = int.Parse(TeamList.SelectedValue);
                     }
-                    
+                    item.Gender = Gender.Text.Trim();
+                    item.AlbertaHealthCareNumber = AlbertaHealthCareNumber.Text.Trim();
+                    item.MedicalAlertDetails = MedicalAlertDetails.Text.Trim();
+                    //item.Gender =
+                    //    string.IsNullOrEmpty(Gender.Text) ? null : Gender.Text;
+                    //item.AlbertaHealthCareNumber =
+                    //    string.IsNullOrEmpty(AlbertaHealthCareNumber.Text) ? null : AlbertaHealthCareNumber.Text;
+                    //item.MedicalAlertDetails =
+                    //    string.IsNullOrEmpty(MedicalAlertDetails.Text) ? null : MedicalAlertDetails.Text;
+
                     if (string.IsNullOrEmpty(Age.Text))
                     {
                         item.Age = null;
@@ -237,16 +296,16 @@ namespace WebAppFSIS.ExercisePages
                     {
                         item.Age = int.Parse(Age.Text);
                     }
-                    if (string.IsNullOrEmpty(AlbertaHealthCareNumber.Text))
-                    {
-                        item.AlbertaHealthCareNumber = null;
-                    }
-                    else
-                    {
-                        item.AlbertaHealthCareNumber = (AlbertaHealthCareNumber.Text);
-                    }
-                    item.Gender = Gender.Text.Trim();
-                    item.MedicalAlertDetails = MedicalAlertDetails.Text.Trim();
+                    //if (string.IsNullOrEmpty(AlbertaHealthCareNumber.Text))
+                    //{
+                    //    item.AlbertaHealthCareNumber = null;
+                    //}
+                    //else
+                    //{
+                    //    item.AlbertaHealthCareNumber = (AlbertaHealthCareNumber.Text);
+                    //}
+                    //item.Gender = Gender.Text.Trim();
+                    //item.MedicalAlertDetails = MedicalAlertDetails.Text.Trim();
 
                     int newID = sysmgr.Add(item);
                     ID.Text = newID.ToString();
@@ -278,7 +337,66 @@ namespace WebAppFSIS.ExercisePages
             }
             else
             {
+                try
+                {
+                    PlayerController sysmgr = new PlayerController();
+                    Player item = new Player();
+                    item.PlayerID = int.Parse(ID.Text);
+                    item.FirstName = FirstName.Text.Trim();
+                    item.LastName = LastName.Text.Trim();
+                    if (GuardianList.SelectedIndex == 0)
+                    {
+                        item.GuardianID = null;
+                    }
+                    else
+                    {
+                        item.GuardianID = int.Parse(GuardianList.SelectedValue);
+                    }
+                    if (TeamList.SelectedIndex == 0)
+                    {
+                        item.TeamID = null;
+                    }
+                    else
+                    {
+                        item.TeamID = int.Parse(TeamList.SelectedValue);
+                    }
 
+                    //item.TeamID = int.Parse(TeamList.SelectedValue);
+                    item.Gender = Gender.Text.Trim();
+                    item.AlbertaHealthCareNumber = AlbertaHealthCareNumber.Text.Trim();
+                    item.MedicalAlertDetails = MedicalAlertDetails.Text.Trim();
+                    //item.Gender =
+                    //    string.IsNullOrEmpty(Gender.Text) ? null : Gender.Text;
+                    //item.AlbertaHealthCareNumber =
+                    //    string.IsNullOrEmpty(AlbertaHealthCareNumber.Text) ? null : AlbertaHealthCareNumber.Text;
+                    //item.MedicalAlertDetails =
+                    //    string.IsNullOrEmpty(MedicalAlertDetails.Text) ? null : MedicalAlertDetails.Text;
+                    if (string.IsNullOrEmpty(Age.Text))
+                    {
+                        item.Age = null;
+                    }
+                    else
+                    {
+                        item.Age = int.Parse(Age.Text);
+                    }
+
+                    int rowsaffected = sysmgr.Update(item);
+                    if (rowsaffected > 0)
+                    {
+                        errormsgs.Add("player has been updated");
+                        LoadMessageDisplay(errormsgs, "alert alert-success");
+                    }
+                    else
+                    {
+                        errormsgs.Add("player was not found");
+                        LoadMessageDisplay(errormsgs, "alert alert-warning");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    errormsgs.Add(GetInnerException(ex).ToString());
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
             }
         }
         protected void Delete_Click(object sender, EventArgs e)
@@ -300,18 +418,17 @@ namespace WebAppFSIS.ExercisePages
             {
                 try
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "CallFunction();", true);
                     PlayerController sysmgr = new PlayerController();
                     int rowsaffected = sysmgr.Delete(id);
                     if (rowsaffected > 0)
                     {
-                        errormsgs.Add("Player has been deleted");
+                        errormsgs.Add("Record has been deleted");
                         LoadMessageDisplay(errormsgs, "alert alert-success");
                         Clear_Click(sender, e);
                     }
                     else
                     {
-                        errormsgs.Add("Player was not found");
+                        errormsgs.Add("Record was not found");
                         LoadMessageDisplay(errormsgs, "alert alert-warning");
                     }
 
@@ -321,6 +438,29 @@ namespace WebAppFSIS.ExercisePages
                     errormsgs.Add(GetInnerException(ex).ToString());
                     LoadMessageDisplay(errormsgs, "alert alert-danger");
                 }
+                //try
+                //{
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "CallFunction();", true);
+                //    PlayerController sysmgr = new PlayerController();
+                //    int rowsaffected = sysmgr.Delete(id);
+                //    if (rowsaffected > 0)
+                //    {
+                //        errormsgs.Add("Player has been deleted");
+                //        LoadMessageDisplay(errormsgs, "alert alert-success");
+                //        Clear_Click(sender, e);
+                //    }
+                //    else
+                //    {
+                //        errormsgs.Add("Player was not found");
+                //        LoadMessageDisplay(errormsgs, "alert alert-warning");
+                //    }
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    errormsgs.Add(GetInnerException(ex).ToString());
+                //    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                //}
             }
         }
 

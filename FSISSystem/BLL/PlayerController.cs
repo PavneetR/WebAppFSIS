@@ -10,11 +10,11 @@ namespace FSISSystem.BLL
 {
     public class PlayerController
     {
-        public Player FindByID(int id)
+        public Player FindByPKID(int PlayerID)
         {
             using (var context = new FSISContext())
             {
-                return context.Players.Find(id);
+                return context.Players.Find(PlayerID);
             }
         }
         public List<Player> List()

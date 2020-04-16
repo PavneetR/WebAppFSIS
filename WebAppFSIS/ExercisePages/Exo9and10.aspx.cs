@@ -26,7 +26,7 @@ namespace WebAppFSIS.ExercisePages
                 PlayerController sysmgr = new PlayerController();
                 List<Player> info = null;
                 info = sysmgr.List();
-                info.Sort((x, y) => x.FirstName.CompareTo(y.LastName));
+                info.Sort((x, y) => x.FullName.CompareTo(y.FullName));
                 List01.DataSource = info;
                 List01.DataTextField = nameof(Player.FullName);
                 List01.DataValueField = nameof(Player.PlayerID);
