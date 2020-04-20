@@ -52,13 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\EmployeesController.cs" />
     <Compile Include="BLL\GuardianController.cs" />
     <Compile Include="BLL\PlayerController.cs" />
+    <Compile Include="BLL\PositionsController.cs" />
+    <Compile Include="BLL\ProgramsController.cs" />
     <Compile Include="BLL\TeamController.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\FSISContext.cs" />
+    <Compile Include="DAL\StarTED.cs" />
+    <Compile Include="ENTITIES\Employee.cs" />
     <Compile Include="ENTITIES\Guardian.cs" />
     <Compile Include="ENTITIES\Player.cs" />
+    <Compile Include="ENTITIES\Position.cs" />
+    <Compile Include="ENTITIES\Program.cs" />
     <Compile Include="ENTITIES\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

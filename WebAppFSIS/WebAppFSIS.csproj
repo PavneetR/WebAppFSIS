@@ -127,6 +127,8 @@
     <Content Include="ExercisePages\exercise06.aspx" />
     <Content Include="ExercisePages\ExerciseHome.aspx" />
     <Content Include="ExercisePages\Exo9and10.aspx" />
+    <Content Include="ExercisePages\Project.aspx" />
+    <Content Include="ExercisePages\ProjectPrac.aspx" />
     <Content Include="ExercisePages\SimpleQuery.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -319,6 +321,20 @@
     </Compile>
     <Compile Include="ExercisePages\Exo9and10.aspx.designer.cs">
       <DependentUpon>Exo9and10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExercisePages\Project.aspx.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExercisePages\Project.aspx.designer.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExercisePages\ProjectPrac.aspx.cs">
+      <DependentUpon>ProjectPrac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExercisePages\ProjectPrac.aspx.designer.cs">
+      <DependentUpon>ProjectPrac.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExercisePages\SimpleQuery.aspx.cs">
       <DependentUpon>SimpleQuery.aspx</DependentUpon>

@@ -80,6 +80,16 @@
                                             style="color:black" runat="server">
                                             Ex 9/10
                                     </a>
+                                    <a class="dropdown-item"
+                                            href="~/ExercisePages/ProjectPrac.aspx"
+                                            style="color:black" runat="server">
+                                            Ex project prac
+                                    </a>
+                                    <a class="dropdown-item"
+                                            href="~/ExercisePages/Project.aspx"
+                                            style="color:black" runat="server">
+                                             Project 
+                                    </a>
 
                                 </div>
                             </li>
